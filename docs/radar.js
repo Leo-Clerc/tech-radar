@@ -293,42 +293,46 @@ function radar_visualization(config) {
     // legend
     var legend = radar.append("g");
     for (var quadrant = 0; quadrant < 4; quadrant++) {
-      test = legend.append("g")
-      .attr("transform", translate(
+      var quarter = legend.append("g")
+        .style("padding", "1000px")
+      quarter.append("rect")
+        .attr("transform", translate(
           legend_offset[quadrant].x,
           legend_offset[quadrant].y - 70
           // legend_offset[quadrant].y - 700
 
           ))
-          .style("height","100%")
-          .style("height","100%")
-      test.append("rect")
         .style("height", "4px")
         .style("width", "40px")
         .style("fill", config.quadrants[quadrant].color)
-      test.append("text")
+      quarter.append("text")
+        .attr("transform", translate(
+          legend_offset[quadrant].x,
+          legend_offset[quadrant].y - 45
+        ))
         .text(config.quadrants[quadrant].name)
         .style("fill","white")
         .style("font-family", "Inter")
         .style("font-weight", 900)
         .style("font-size", "18px");    
 
-      for (var ring = 0; ring < 4; ring++) {
-        test.append("text")
+for (var ring = 0; ring < 4; ring++) {
+        quarter.append("text")
+          .attr("transform", legend_transform(quadrant, ring))
           .text(config.rings[ring].name)
           .style("font-family", "Inter")
           .style("fill","white")
           .style("font-size", "12px")
           .style("font-weight", "bold");
-        test.selectAll(".legend" + quadrant + ring)
+        quarter.selectAll(".legend" + quadrant + ring)
           .data(segmented[quadrant][ring])
           .enter()
             .append("a")
-                //.attr("href", function (d, i) {
-                  //return d.link ? d.link : "#"; // stay on same page if no link was provided
-                //})
+                .attr("href", function (d, i) {
+                  return d.link ? d.link : "#"; // stay on same page if no link was provided
+                })
             .append("text")
-              //.attr("transform", function(d, i) { return legend_transform(quadrant, ring, i); })
+              .attr("transform", function(d, i) { return legend_transform(quadrant, ring, i); })
               .attr("class", "legend" + quadrant + ring)
               .attr("id", function(d, i) { return "legendItem" + d.id; })
               .text(function(d, i) { return d.id + ". " + d.label; })
@@ -337,8 +341,7 @@ function radar_visualization(config) {
               .style("font-size", "11px")
               .on("mouseover", function(d) { showBubble(d); highlightLegendItem(d, config.quadrants[d.quadrant].color); })
               .on("mouseout", function(d) { hideBubble(d); unhighlightLegendItem(d); });
-      }
-    }
+      }   }
 
   }
 
