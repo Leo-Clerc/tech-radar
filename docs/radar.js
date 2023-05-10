@@ -322,13 +322,19 @@ function radar_visualization(config) {
           .style("fill","white")
           .style("font-size", "12px")
           .style("font-weight", "bold");
-        legend.selectAll(".legend" + quadrant + ring)
+        elements = legend.append("ul")
+          .attr("id", "list "+quadrant+", "+ring)
+          .attr("transform", legend_transform(quadrant, ring))
+          .style("height", "50px")
+          .style("width", "14px")
+        elements.selectAll("ul")
           .data(segmented[quadrant][ring])
           .enter()
+            .append("li")
             .append("a")
-                .attr("href", function (d, i) {
-                  return d.link ? d.link : "#"; // stay on same page if no link was provided
-                })
+                //.attr("href", function (d, i) {
+                  //return d.link ? d.link : "#"; // stay on same page if no link was provided
+                //})
             .append("text")
               .attr("transform", function(d, i) { return legend_transform(quadrant, ring, i); })
               .attr("class", "legend" + quadrant + ring)
