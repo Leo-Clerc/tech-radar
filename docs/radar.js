@@ -293,21 +293,20 @@ function radar_visualization(config) {
     // legend
     var legend = radar.append("g");
     for (var quadrant = 0; quadrant < 4; quadrant++) {
-      legend.append("rect")
-        .attr("transform", translate(
+      test = legend.append("g")
+      .attr("transform", translate(
           legend_offset[quadrant].x,
           legend_offset[quadrant].y - 70
           // legend_offset[quadrant].y - 700
 
           ))
+          .style("height","100%")
+          .style("height","100%")
+      test.append("rect")
         .style("height", "4px")
         .style("width", "40px")
         .style("fill", config.quadrants[quadrant].color)
-      legend.append("text")
-        .attr("transform", translate(
-          legend_offset[quadrant].x,
-          legend_offset[quadrant].y - 45
-        ))
+      test.append("text")
         .text(config.quadrants[quadrant].name)
         .style("fill","white")
         .style("font-family", "Inter")
@@ -315,23 +314,15 @@ function radar_visualization(config) {
         .style("font-size", "18px");    
 
       for (var ring = 0; ring < 4; ring++) {
-        legend.append("text")
-          .attr("transform", legend_transform(quadrant, ring))
+        test.append("text")
           .text(config.rings[ring].name)
           .style("font-family", "Inter")
           .style("fill","white")
           .style("font-size", "12px")
           .style("font-weight", "bold");
-        elements = legend.append("ul")
-          .attr("id", "list "+quadrant+", "+ring)
-          .attr("transform", legend_transform(quadrant, ring))
-          .style("display", "block")
-          .style("overflow", "hidden")
-          .style("overflow-y", "scroll")
-        elements.selectAll("ul")
+        test.selectAll(".legend" + quadrant + ring)
           .data(segmented[quadrant][ring])
           .enter()
-            .append("li")
             .append("a")
                 //.attr("href", function (d, i) {
                   //return d.link ? d.link : "#"; // stay on same page if no link was provided
