@@ -193,11 +193,13 @@ function radar_visualization(config) {
   var container = d3.select("body").append("div")
     .attr("class","parent")
   var col1 = container.append("div")
+    .style("height","full");
   var svg = container.append("svg") 
       .style("background-color", config.colors.background)
     .attr("width", config.width)
     .attr("height", config.height);
   var col2 = container.append("div")
+    .style("height","full");
 
   var legend = d3.select("body").append("div")
   var radar = svg.append("g");
@@ -297,6 +299,7 @@ function radar_visualization(config) {
     // legend
     for (var quadrant = 0; quadrant < 4; quadrant++) {
       (quadrant===0 || quadrant===2) ? quarter = col1.append("div") : quarter = col2.append("div");
+      (quadrant===0 || quadrant===2) ? quarter.style("top", 0) : quarter.style("bottom", 0);
       quarter.append("rect")
         .attr("transform", translate(
           legend_offset[quadrant].x,
