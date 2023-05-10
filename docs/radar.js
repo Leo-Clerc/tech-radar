@@ -190,12 +190,16 @@ function radar_visualization(config) {
       440
     ].join(" ");
   }
-
-  var svg = d3.select("svg#" + config.svg_id)
-    .style("background-color", config.colors.background)
+  var container = d3.select("body").append("div")
+    .attr("class","parent")
+  var col1 = container.append("div")
+  var svg = container.append("svg") 
+      .style("background-color", config.colors.background)
     .attr("width", config.width)
     .attr("height", config.height);
+  var col2 = container.append("div")
 
+  var legend = d3.select("body").append("div")
   var radar = svg.append("g");
   if ("zoomed_quadrant" in config) {
     svg.attr("viewBox", viewbox(config.zoomed_quadrant));
@@ -291,10 +295,8 @@ function radar_visualization(config) {
       .style("font-size", "10px");
 
     // legend
-    var legend = radar.append("g");
     for (var quadrant = 0; quadrant < 4; quadrant++) {
-      var quarter = legend.append("g")
-        .style("padding", "1000px")
+      (quadrant===0 || quadrant===2) ? quarter = col1.append("div") : quarter = col2.append("div");
       quarter.append("rect")
         .attr("transform", translate(
           legend_offset[quadrant].x,
