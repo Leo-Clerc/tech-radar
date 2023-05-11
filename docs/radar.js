@@ -68,6 +68,7 @@ function radar_visualization(config) {
   ];
   const legend_height="300"
   const legend_width="400"
+  const default_legend_element="color: white; font-family: Inter; font-size: 11px;"
   function polar(cartesian) {
     var x = cartesian.x;
     var y = cartesian.y;
@@ -411,14 +412,12 @@ for (subcol = 0; subcol < 2; subcol++ ) {
 
   function highlightLegendItem(d, color) {
     var legendItem = document.getElementById("legendItem" + d.id);
-    legendItem.setAttribute("filter", `url(#solid-${color})`);
-    legendItem.setAttribute("fill", color);
+    legendItem.setAttribute("style",default_legend_element+"background-color: "+color)
   }
 
   function unhighlightLegendItem(d) {
     var legendItem = document.getElementById("legendItem" + d.id);
-    legendItem.removeAttribute("filter");
-    legendItem.removeAttribute("fill");
+    legendItem.setAttribute("style",default_legend_element)
   }
 
   // draw blips on radar
