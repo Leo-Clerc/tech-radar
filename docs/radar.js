@@ -327,7 +327,7 @@ for (subcol = 0; subcol < 2; subcol++ ) {
   subcolumn.style("display","flex")
   .style("flex-direction","column")
   for(var index = 0; index < 2; index++){
-        ring = subcol+index
+        ring = 2*subcol+index
         ring_section =  subcolumn.append("div")
           ring_section.attr("id","ring-section : quadrant: "+quadrant+", ring: "+ring).style("display","flex")
           .style("display","flex")
@@ -346,6 +346,7 @@ for (subcol = 0; subcol < 2; subcol++ ) {
                 .attr("href", function (d, i) {
                   return d.link ? d.link : "#"; // stay on same page if no link was provided
                 })
+                .style("text-decoration","none")
             .append("text")
               //.attr("transform", function(d, i) { return legend_transform(quadrant, ring, i); })
               .attr("class", "legend" + quadrant + ring)
