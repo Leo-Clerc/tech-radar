@@ -66,7 +66,8 @@ function radar_visualization(config) {
     { x: -675, y: -310 },
     { x: 450, y: -310 }
   ];
-
+  const legend_height="300"
+  const legend_width="400"
   function polar(cartesian) {
     var x = cartesian.x;
     var y = cartesian.y;
@@ -296,12 +297,17 @@ function radar_visualization(config) {
       .style("font-size", "10px");
 
     // legend
-    for (var quadrant = 0; quadrant < 4; quadrant++) {
-      (quadrant===0 || quadrant===2) ? quarter = col1.append("div") : quarter = col2.append("div");
-      (quadrant===1 || quadrant===3) ? quarter.style("top", 0) : quarter.style("bottom", 0);
+    for (var quadrant = 3; quadrant >= 0; quadrant--) {  //This for loop is reversed, because else the parts of the legends don't go with their appropriate quarter
+      (quadrant===1 || quadrant===2) ? quarter = col1.append("div") : quarter = col2.append("div");
       quarter.style("flex","1 1 clc(100% - 50 px)")
+        .attr("class","quarter")
         .style("flex-wrap","wrap")
-      quarter.append("rect")
+        .style("height",legend_height)
+        .style("width",legend_width)
+        .style("overflow","hidden")
+        .style("overflow-y","auto")
+      quarter.append("svg")
+      .append("rect")
         .attr("transform", translate(
           legend_offset[quadrant].x,
           legend_offset[quadrant].y - 70
@@ -317,23 +323,29 @@ function radar_visualization(config) {
           //legend_offset[quadrant].y - 45
         //))
         .text(config.quadrants[quadrant].name)
-        .style("fill","white")
+        .style("color","white")
         .style("font-family", "Inter")
         .style("font-weight", 900)
         .style("font-size", "18px");    
 
 for (subcol = 0; subcol < 2; subcol++ ) {
   subcolumn = quarter.append("div").attr("id","quadrant: "+quadrant+", subcolumn: "+subcol)
-  for(var ring = subcol; ring < 4; ring+=2){
+  subcolumn.style("display","flex")
+  .style("flex-direction","column")
+  for(var index = 0; index < 2; index++){
+        ring = 2*index
         ring_section =  subcolumn.append("div")
+          ring_section.attr("id","ring-section : quadrant: "+quadrant+", ring: "+ring).style("display","flex")
+          .style("display","flex")
+          .style("flex-direction","column")
         ring_section.append("text")
           //.attr("transform", legend_transform(quadrant, ring))
           .text(config.rings[ring].name)
           .style("font-family", "Inter")
-          .style("fill","white")
+          .style("color","white")
           .style("font-size", "12px")
           .style("font-weight", "bold");
-        quarter.selectAll(".legend" + quadrant + ring)
+        ring_section.selectAll("div")
           .data(segmented[quadrant][ring])
           .enter()
             .append("a")
@@ -345,7 +357,7 @@ for (subcol = 0; subcol < 2; subcol++ ) {
               .attr("class", "legend" + quadrant + ring)
               .attr("id", function(d, i) { return "legendItem" + d.id; })
               .text(function(d, i) { return d.id + ". " + d.label; })
-              .style("fill","white")
+              .style("color","white")
               .style("font-family", "Inter")
               .style("font-size", "11px")
               .on("mouseover", function(d) { showBubble(d); highlightLegendItem(d, config.quadrants[d.quadrant].color); })
