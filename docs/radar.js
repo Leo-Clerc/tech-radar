@@ -201,7 +201,6 @@ function radar_visualization(config) {
   var col2 = container.append("div")
     .style("height","full");
 
-  var legend = d3.select("body").append("div")
   var radar = svg.append("g");
   if ("zoomed_quadrant" in config) {
     svg.attr("viewBox", viewbox(config.zoomed_quadrant));
@@ -299,7 +298,9 @@ function radar_visualization(config) {
     // legend
     for (var quadrant = 0; quadrant < 4; quadrant++) {
       (quadrant===0 || quadrant===2) ? quarter = col1.append("div") : quarter = col2.append("div");
-      (quadrant===0 || quadrant===2) ? quarter.style("top", 0) : quarter.style("bottom", 0);
+      (quadrant===1 || quadrant===3) ? quarter.style("top", 0) : quarter.style("bottom", 0);
+      quarter.style("flex","1 1 clc(100% - 50 px)")
+        .style("flex-wrap","wrap")
       quarter.append("rect")
         .attr("transform", translate(
           legend_offset[quadrant].x,
@@ -311,19 +312,22 @@ function radar_visualization(config) {
         .style("width", "40px")
         .style("fill", config.quadrants[quadrant].color)
       quarter.append("text")
-        .attr("transform", translate(
-          legend_offset[quadrant].x,
-          legend_offset[quadrant].y - 45
-        ))
+        //.attr("transform", translate(
+          //legend_offset[quadrant].x,
+          //legend_offset[quadrant].y - 45
+        //))
         .text(config.quadrants[quadrant].name)
         .style("fill","white")
         .style("font-family", "Inter")
         .style("font-weight", 900)
         .style("font-size", "18px");    
 
-for (var ring = 0; ring < 4; ring++) {
-        quarter.append("text")
-          .attr("transform", legend_transform(quadrant, ring))
+for (subcol = 0; subcol < 2; subcol++ ) {
+  subcolumn = quarter.append("div").attr("id","quadrant: "+quadrant+", subcolumn: "+subcol)
+  for(var ring = subcol; ring < 4; ring+=2){
+        ring_section =  subcolumn.append("div")
+        ring_section.append("text")
+          //.attr("transform", legend_transform(quadrant, ring))
           .text(config.rings[ring].name)
           .style("font-family", "Inter")
           .style("fill","white")
@@ -337,7 +341,7 @@ for (var ring = 0; ring < 4; ring++) {
                   return d.link ? d.link : "#"; // stay on same page if no link was provided
                 })
             .append("text")
-              .attr("transform", function(d, i) { return legend_transform(quadrant, ring, i); })
+              //.attr("transform", function(d, i) { return legend_transform(quadrant, ring, i); })
               .attr("class", "legend" + quadrant + ring)
               .attr("id", function(d, i) { return "legendItem" + d.id; })
               .text(function(d, i) { return d.id + ". " + d.label; })
@@ -346,7 +350,7 @@ for (var ring = 0; ring < 4; ring++) {
               .style("font-size", "11px")
               .on("mouseover", function(d) { showBubble(d); highlightLegendItem(d, config.quadrants[d.quadrant].color); })
               .on("mouseout", function(d) { hideBubble(d); unhighlightLegendItem(d); });
-      }   }
+    }}   }
 
   }
 
