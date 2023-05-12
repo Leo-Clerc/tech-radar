@@ -300,12 +300,14 @@ function radar_visualization(config) {
     // legend
     for (var quadrant = 3; quadrant >= 0; quadrant--) {  //This for loop is reversed, because else the parts of the legends don't go with their appropriate quarter
       (quadrant===1 || quadrant===2) ? subcontainer = col1.append("div") : subcontainer = col2.append("div");
+      subcontainer.attr("transform",translate(20,0))
       subcontainer.append("svg")
       .append("rect")
+        .attr("transform",translate(0,100))
         .style("height", "4px")
         .style("width", "40px")
         .style("fill", config.quadrants[quadrant].color)
-      subcontainer.append("text")
+      title = subcontainer.append("div").style("justify-content","left").style("margin-bottom","14px").append("text")
         //.attr("transform", translate(
           //legend_offset[quadrant].x,
           //legend_offset[quadrant].y - 45
@@ -318,15 +320,13 @@ function radar_visualization(config) {
         quarter = subcontainer.append("div");
       quarter.style("flex","1 1 clc(100% - 50 px)")
         .attr("class","quarter")
-        .style("flex-wrap","wrap")
         .style("height",legend_height)
         .style("width",legend_width)
-        .style("overflow","hidden")
-        .style("overflow-y","auto")
 for (subcol = 0; subcol < 2; subcol++ ) {
   subcolumn = quarter.append("div").attr("id","quadrant: "+quadrant+", subcolumn: "+subcol)
   subcolumn.style("display","flex")
   .style("flex-direction","column")
+  .style("row-gap","14px")
   for(var index = 0; index < 2; index++){
         ring = 2*subcol+index
         ring_section =  subcolumn.append("div")

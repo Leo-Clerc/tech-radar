@@ -32,5 +32,8 @@ grid-row-gap: 0px;
   grid-template-rows: 1fr;
   grid-column-gap: 4px;
   grid-row-gap: 0px;
+  overflow: hidden;
+  overflow-y: auto;
+  flex-wrap: wrap;
 }
 
