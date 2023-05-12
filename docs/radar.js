@@ -194,14 +194,21 @@ function radar_visualization(config) {
   }
   var container = d3.select("body").append("div")
     .attr("class","parent")
+    .attr("width","100vw")
   var col1 = container.append("div")
-    .style("height","full");
-  var svg = container.append("svg") 
+    .attr("width", "20%")
+    .style("height",config.height);
+
+  var svgContainer=container.append("div")
+  svgContainer.attr("width",config.width)
+    .attr("height",config.height)
+  var svg = svgContainer.append("svg") 
       .style("background-color", config.colors.background)
     .attr("width", config.width)
     .attr("height", config.height);
   var col2 = container.append("div")
-    .style("height","full");
+    .attr("width", "20%")
+    .style("height",config.height);
 
   var radar = svg.append("g");
   if ("zoomed_quadrant" in config) {
@@ -250,7 +257,8 @@ function radar_visualization(config) {
       .style("fill", "#a3dbe810")
       .style("stroke", config.colors.grid)
       .style("stroke-width", 0.15*(i+1));
-    if (false) {        
+    //TODO: Assess if this conditional bloc might have some use, in which case change the condition to exploit it. Else, delete it.
+    /*if (false) {        
       grid.append("text")
         .text(config.rings[i].name)
         .attr("y", -rings[i].radius + 62)
@@ -262,6 +270,7 @@ function radar_visualization(config) {
         .style("pointer-events", "none")
         .style("user-select", "none");
     }
+    Comment this out so eslint doesn't complain. */
   }
 
   function legend_transform(quadrant, ring, index=null) {
