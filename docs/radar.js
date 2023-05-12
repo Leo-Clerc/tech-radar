@@ -195,20 +195,17 @@ function radar_visualization(config) {
   var container = d3.select("body").append("div")
     .attr("class","parent")
     .attr("width","100vw")
+    .style("height",config.height);
   var col1 = container.append("div")
     .attr("width", "20%")
-    .style("height",config.height);
 
   var svgContainer=container.append("div")
   svgContainer.attr("width",config.width)
-    .attr("height",config.height)
   var svg = svgContainer.append("svg") 
-      .style("background-color", config.colors.background)
     .attr("width", config.width)
     .attr("height", config.height);
   var col2 = container.append("div")
     .attr("width", "20%")
-    .style("height",config.height);
 
   var radar = svg.append("g");
   if ("zoomed_quadrant" in config) {
@@ -308,7 +305,7 @@ function radar_visualization(config) {
 
     // legend
     for (var quadrant = 3; quadrant >= 0; quadrant--) {  //This for loop is reversed, because else the parts of the legends don't go with their appropriate quarter
-      (quadrant===1 || quadrant===2) ? subcontainer = col1.append("div") : subcontainer = col2.append("div");
+      var subcontainer = ((quadrant===1 || quadrant===2) ? col1.append("div") : col2.append("div"));
       subcontainer.attr("transform",translate(20,0))
       subcontainer.append("svg")
       .append("rect")
@@ -316,7 +313,8 @@ function radar_visualization(config) {
         .style("height", "4px")
         .style("width", "40px")
         .style("fill", config.quadrants[quadrant].color)
-      title = subcontainer.append("div").style("justify-content","left").style("margin-bottom","14px").append("text")
+      title = subcontainer.append("div").style("justify-content","left").style("margin-bottom","14px")
+      .append("text")
         //.attr("transform", translate(
           //legend_offset[quadrant].x,
           //legend_offset[quadrant].y - 45
