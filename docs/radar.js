@@ -198,21 +198,24 @@ function radar_visualization(config) {
     .style("height",config.height);
   var col1 = container.append("div")
     .attr("width", "20%")
+    .attr("height", config.height);
 
   var svgContainer=container.append("div")
-  svgContainer.attr("width",config.width)
+  svgContainer.attr("width","80%")
     .attr("height", config.height);
   var svg = svgContainer.append("svg") 
-    .attr("width", config.width)
+    .attr("preserveAspectRatio","xMidYMid meet")
+    .attr("width","auto")
     .attr("height","100%")
   var col2 = container.append("div")
     .attr("width", "20%")
+    .attr("height", config.height);
 
   var radar = svg.append("g");
   if ("zoomed_quadrant" in config) {
     svg.attr("viewBox", viewbox(config.zoomed_quadrant));
   } else {
-    radar.attr("transform", translate(config.width / 2, config.height / 2));
+    svg.attr("viewBox",-config.width/2+" "+-config.height/2+" "+config.width+" "+config.height)
   }
 
   var grid = radar.append("g");

@@ -20,7 +20,7 @@ td {
 
 .parent {
 display: grid;
-grid-template-columns: repeat(3, 1fr);
+grid-template-columns: 20vw 60vw 20vw;
 grid-template-rows: 1fr;
 grid-column-gap: 0px;
 grid-row-gap: 0px;
