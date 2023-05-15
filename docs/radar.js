@@ -289,7 +289,7 @@ function radar_visualization(config) {
   // draw title and legend (only in print layout)
   if (config.print_layout) {
 
-    // title
+    /* // title This part used to handle both the title and the footer, which are now displayed from the index
     radar.append("text")
       .attr("transform", translate(title_offset.x, title_offset.y))
       .text(config.title)
@@ -306,7 +306,7 @@ function radar_visualization(config) {
       .style("fill","white")
       .style("font-family", "Inter")
       .style("font-size", "10px");
-
+*/
     // legend
     for (var quadrant = 3; quadrant >= 0; quadrant--) {  //This for loop is reversed, because else the parts of the legends don't go with their appropriate quarter
       var subcontainer = ((quadrant===1 || quadrant===2) ? col1.append("div") : col2.append("div"));
