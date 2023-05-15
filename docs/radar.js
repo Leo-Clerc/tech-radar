@@ -192,10 +192,11 @@ function radar_visualization(config) {
       440
     ].join(" ");
   }
-  var container = d3.select("body").append("div")
+  var container = d3.select("body").select("div").append("div")
     .attr("class","parent")
     .attr("width","100vw")
-    .style("height","60vw");
+    .style("order","2")
+    .style("height","60%");
   var col1 = container.append("div")
   .style("margin-left","50px")
     .attr("height", "100%");

@@ -40,8 +40,8 @@ a:visited{
 </style>
 
 <body style="background-color:#16293c;color:#fff!important;font-family:'Inter'">
-
-<h1>Ekimetrics Tech Radar</h1>
+<div style="display: flex; flex-direction: column; align-items: center;gap: 5px;overflow: auto;">
+<h1 style="order: 1;">Ekimetrics Tech Radar</h1>
 <!--TODO: Extract legend in other part to handle its logic outside of the script-->
 <script> 
 
@@ -77,8 +77,8 @@ radar_visualization({
   //ENTRIES
 });
 </script>
-<h3>▲ moved up     ▼ moved down</h3>
-<table>
+<h3 style="order: 3;">▲ moved up     ▼ moved down</h3>
+<table style="order: 4;">
 <tr>
 <td>
 
@@ -121,6 +121,6 @@ Check out our <a href="https://ekimetrics.github.io">tech & innovation website E
 
 </td></tr>
 </table>
-
+</div>
 </body>
 </html>
