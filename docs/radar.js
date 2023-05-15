@@ -195,7 +195,7 @@ function radar_visualization(config) {
   var container = d3.select("body").append("div")
     .attr("class","parent")
     .attr("width","100vw")
-    .style("height","100vw");
+    .style("height","60vw");
   var col1 = container.append("div")
   .style("margin-left","50px")
     .attr("height", "100%");
@@ -343,7 +343,7 @@ function radar_visualization(config) {
       quarter.style("flex","1 1 clc(100% - 50 px)")
         .attr("class","quarter")
         .style("height",legend_height)
-        .style("width",legend_width)
+        .style("width","100%")
 for (subcol = 0; subcol < 2; subcol++ ) {
   subcolumn = quarter.append("div").attr("id","quadrant: "+quadrant+", subcolumn: "+subcol)
   subcolumn.style("display","flex")

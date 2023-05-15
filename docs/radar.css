@@ -37,3 +37,16 @@ grid-row-gap: 0px;
   flex-wrap: wrap;
 }
 
+@media only screen and (max-width: 800px){
+  .quarter{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 1px;
+  grid-row-gap: 0px;
+  overflow: hidden;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  }
+}
+
