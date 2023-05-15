@@ -201,9 +201,10 @@ function radar_visualization(config) {
 
   var svgContainer=container.append("div")
   svgContainer.attr("width",config.width)
+    .attr("height", config.height);
   var svg = svgContainer.append("svg") 
     .attr("width", config.width)
-    .attr("height", config.height);
+    .attr("height","100%")
   var col2 = container.append("div")
     .attr("width", "20%")
 
