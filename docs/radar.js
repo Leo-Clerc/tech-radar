@@ -195,27 +195,38 @@ function radar_visualization(config) {
   var container = d3.select("body").append("div")
     .attr("class","parent")
     .attr("width","100vw")
-    .style("height",config.height);
+    .style("height","100vw");
   var col1 = container.append("div")
-    .attr("width", "20%")
-    .attr("height", config.height);
+  .style("margin-left","50px")
+    .attr("height", "100%");
 
-  var svgContainer=container.append("div")
-  svgContainer.attr("width","80%")
-    .attr("height", config.height);
+  var svgContainer=container.append("div").attr("id","svgContainer")
+  svgContainer.attr("height", "100%");
   var svg = svgContainer.append("svg") 
-    .attr("preserveAspectRatio","xMidYMid meet")
-    .attr("width","auto")
+    .attr("preserveAspectRatio","xMinYMin meet")
+    .attr("width","100%")
     .attr("height","100%")
   var col2 = container.append("div")
-    .attr("width", "20%")
-    .attr("height", config.height);
+    .attr("height", "100%");
+
+  const  svgDimensions = container.select("#svgContainer").node().getBoundingClientRect();
+  x = svgDimensions.x;
+  y = svgDimensions.y;
+  width = parseInt(svg.style("width"));
+  height = parseInt(svg.style("height"));
 
   var radar = svg.append("g");
+  const radarDimensions = svg.select("g").node().getBBox();
+  radarX = radarDimensions.x;
+  radarY = radarDimensions.y;
+  radarHeight = parseInt(svg.style("height"));
+  radarWidth = parseInt(svg.style("width"));
   if ("zoomed_quadrant" in config) {
     svg.attr("viewBox", viewbox(config.zoomed_quadrant));
   } else {
-    svg.attr("viewBox",-config.width/2+" "+-config.height/2+" "+config.width+" "+config.height)
+   // svg.attr("viewBox",-config.width/2+" "+-config.height/2+" "+config.width+" "+config.height)
+    //svg.attr("viewBox",0 +" "+y+" "+width+" "+height)
+     svg.attr("viewBox","-500 -500 1000 1000")        
   }
 
   var grid = radar.append("g");
