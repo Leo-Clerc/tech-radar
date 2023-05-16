@@ -54,6 +54,8 @@ function radar_visualization(config) {
     { radius: 400 }
   ];
 
+  const radar_radius = rings[3].radius + 100;
+
   const title_offset =
     { x: -675, y: -440 };
 
@@ -210,24 +212,11 @@ function radar_visualization(config) {
   var col2 = container.append("div")
     .attr("height", "100%");
 
-  const  svgDimensions = container.select("#svgContainer").node().getBoundingClientRect();
-  x = svgDimensions.x;
-  y = svgDimensions.y;
-  width = parseInt(svg.style("width"));
-  height = parseInt(svg.style("height"));
-
   var radar = svg.append("g");
-  const radarDimensions = svg.select("g").node().getBBox();
-  radarX = radarDimensions.x;
-  radarY = radarDimensions.y;
-  radarHeight = parseInt(svg.style("height"));
-  radarWidth = parseInt(svg.style("width"));
   if ("zoomed_quadrant" in config) {
     svg.attr("viewBox", viewbox(config.zoomed_quadrant));
   } else {
-   // svg.attr("viewBox",-config.width/2+" "+-config.height/2+" "+config.width+" "+config.height)
-    //svg.attr("viewBox",0 +" "+y+" "+width+" "+height)
-     svg.attr("viewBox","-500 -500 1000 1000")        
+     svg.attr("viewBox",-radar_radius+" "+(-radar_radius)+" "+2*radar_radius+" "+2*radar_radius)        
   }
 
   var grid = radar.append("g");
