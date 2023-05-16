@@ -19,14 +19,22 @@ td {
 }
 
 .parent {
-display: grid;
-grid-template-columns: 20vw 60vw 20vw;
-grid-template-rows: 1fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px;
-min-height: min-content;
+display: flex;
+width: 100%;
+height: 100vh;
+
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  align-items: justify-evenly;
+}
+.svg{
+  width:60vw;
+  height:60vw;
+}
 .quarter {
   display: flex;
   flex-direction: row;
@@ -35,7 +43,7 @@ min-height: min-content;
   overflow-y: auto;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  height: 50%;
+  height: 100%;
 }
 
 @media only screen and (max-width: 800px){

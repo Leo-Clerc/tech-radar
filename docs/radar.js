@@ -196,21 +196,16 @@ function radar_visualization(config) {
   }
   var container = d3.select("body").select("div").append("div")
     .attr("class","parent")
-    .attr("width","100vw")
     .style("order","2")
-    .style("height","100vh");
   var col1 = container.append("div")
-  .style("overflow","hidden")
+  .attr("class","column")
 
   var svgContainer=container.append("div").attr("id","svgContainer")
-  svgContainer.attr("height", "100%");
+    .attr("class","svg")
   var svg = svgContainer.append("svg") 
     .attr("preserveAspectRatio","xMinYMin meet")
-    .attr("width","100%")
-    .attr("height","100%")
   var col2 = container.append("div")
-    .attr("height", "100%");
-
+  .attr("class","column")
   var radar = svg.append("g");
   if ("zoomed_quadrant" in config) {
     svg.attr("viewBox", viewbox(config.zoomed_quadrant));
@@ -313,6 +308,7 @@ function radar_visualization(config) {
       subcontainer.attr("transform",translate(20,0))
         .attr("id","quadrant "+quadrant)
         .style("height","25%")
+        .style("flex","1")
       subcontainer.append("svg")
       .append("rect")
         .attr("transform",translate(0,100))
