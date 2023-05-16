@@ -200,7 +200,6 @@ function radar_visualization(config) {
     .style("order","2")
     .style("height","100vh");
   var col1 = container.append("div")
-  .style("margin-left","50px")
   .style("overflow","hidden")
 
   var svgContainer=container.append("div").attr("id","svgContainer")
