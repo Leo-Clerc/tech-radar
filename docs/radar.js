@@ -198,7 +198,7 @@ function radar_visualization(config) {
     .attr("class","parent")
     .attr("width","100vw")
     .style("order","2")
-    .style("height","60%");
+    .style("height","100vw");
   var col1 = container.append("div")
   .style("margin-left","50px")
     .attr("height", "100%");
