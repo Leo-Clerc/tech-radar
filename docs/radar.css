@@ -24,22 +24,23 @@ grid-template-columns: 20vw 60vw 20vw;
 grid-template-rows: 1fr;
 grid-column-gap: 0px;
 grid-row-gap: 0px;
+min-height: min-content;
 }
 
 .quarter {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 4px;
+  display: flex;
+  flex-direction: row;
   grid-row-gap: 0px;
   overflow: hidden;
   overflow-y: auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  height: 50%;
 }
 
 @media only screen and (max-width: 800px){
   .quarter{
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 1px;

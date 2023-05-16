@@ -198,10 +198,10 @@ function radar_visualization(config) {
     .attr("class","parent")
     .attr("width","100vw")
     .style("order","2")
-    .style("height","100vw");
+    .style("height","100vh");
   var col1 = container.append("div")
   .style("margin-left","50px")
-    .attr("height", "100%");
+  .style("overflow","hidden")
 
   var svgContainer=container.append("div").attr("id","svgContainer")
   svgContainer.attr("height", "100%");
@@ -312,6 +312,8 @@ function radar_visualization(config) {
     for (var quadrant = 3; quadrant >= 0; quadrant--) {  //This for loop is reversed, because else the parts of the legends don't go with their appropriate quarter
       var subcontainer = ((quadrant===1 || quadrant===2) ? col1.append("div") : col2.append("div"));
       subcontainer.attr("transform",translate(20,0))
+        .attr("id","quadrant "+quadrant)
+        .style("height","25%")
       subcontainer.append("svg")
       .append("rect")
         .attr("transform",translate(0,100))
@@ -332,8 +334,6 @@ function radar_visualization(config) {
         quarter = subcontainer.append("div");
       quarter.style("flex","1 1 clc(100% - 50 px)")
         .attr("class","quarter")
-        .style("height",legend_height)
-        .style("width","100%")
 for (subcol = 0; subcol < 2; subcol++ ) {
   subcolumn = quarter.append("div").attr("id","quadrant: "+quadrant+", subcolumn: "+subcol)
   subcolumn.style("display","flex")
