@@ -322,10 +322,7 @@ function radar_visualization(config) {
           //legend_offset[quadrant].y - 45
         //))
         .text(config.quadrants[quadrant].name)
-        .style("color","white")
-        .style("font-family", "Inter")
-        .style("font-weight", 900)
-        .style("font-size", "18px");    
+          .attr("class","quadrant_name")
         quarter = subcontainer.append("div");
       quarter
         .attr("class","quarter")
@@ -343,10 +340,7 @@ for (subcol = 0; subcol < 2; subcol++ ) {
         ring_section.append("text")
           //.attr("transform", legend_transform(quadrant, ring))
           .text(config.rings[ring].name)
-          .style("font-family", "Inter")
-          .style("color","white")
-          .style("font-size", "12px")
-          .style("font-weight", "bold");
+            .attr("class","ring_name");
         ring_section.selectAll("div")
           .data(segmented[quadrant][ring])
           .enter()
@@ -360,9 +354,7 @@ for (subcol = 0; subcol < 2; subcol++ ) {
               .attr("class", "legend" + quadrant + ring)
               .attr("id", function(d, i) { return "legendItem" + d.id; })
               .text(function(d, i) { return d.id + ". " + d.label; })
-              .style("color","white")
-              .style("font-family", "Inter")
-              .style("font-size", "11px")
+              .attr("class","techno_name")
               .on("mouseover", function(d) { showBubble(d); highlightLegendItem(d, config.quadrants[d.quadrant].color); })
               .on("mouseout", function(d) { hideBubble(d); unhighlightLegendItem(d); });
     }}   }
