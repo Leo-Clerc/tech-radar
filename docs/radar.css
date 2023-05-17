@@ -37,6 +37,13 @@ justify-content: space-evenly;
   position: relative;
 }
 
+.section_title{
+  font-family: Inter;
+  font-weight: 900;
+  font-size: 18px;
+  color: white;
+}
+
 @media (max-width: 1000px){
   .parent {
     width: 80%;
