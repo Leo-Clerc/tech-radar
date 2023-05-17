@@ -9,8 +9,7 @@ li {
   margin: 25px 50px 0 0;
 }
 table {
-  width: 100vw;
-  margin: 0 50px 0 50px;
+  width: 100%;
 }
 td {
   width: 50%;
@@ -39,16 +38,27 @@ justify-content: space-evenly;
 }
 
 @media (max-width: 1000px){
+  .parent {
+    width: 80%;
+  }
+  .svgContainer {
+    width: 60%
+  }
   .svg {
     position: absolute;
     top: 25%;
   }
   .column {
     height: 50%;
-    width: 50%
+    width: 20%
   }
 }
 
+.quadrant {
+  height: 50%;
+  flex: 1;
+  overflow: hidden;
+}
 .quarter {
   display: flex;
   flex-direction: row;
@@ -57,19 +67,7 @@ justify-content: space-evenly;
   overflow-y: auto;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  height: 50%;
+  height: 100%;
 }
 
-@media only screen and (max-width: 800px){
-  .quarter{
-  display: flex;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 1px;
-  grid-row-gap: 0px;
-  overflow: hidden;
-  overflow-y: auto;
-  flex-wrap: wrap;
-  }
-}
 

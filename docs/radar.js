@@ -306,13 +306,12 @@ function radar_visualization(config) {
     // legend
     for (var quadrant = 3; quadrant >= 0; quadrant--) {  //This for loop is reversed, because else the parts of the legends don't go with their appropriate quarter
       var subcontainer = ((quadrant===1 || quadrant===2) ? col1.append("div") : col2.append("div"));
-      subcontainer.attr("transform",translate(20,0))
+      subcontainer
         .attr("id","quadrant "+quadrant)
-        .style("height","25%")
-        .style("flex","1")
+        .attr("class","quadrant")
       subcontainer.append("svg")
       .append("rect")
-        .attr("transform",translate(0,100))
+        .attr("transform",translate(0,140))
         .style("height", "4px")
         .style("width", "40px")
         .style("fill", config.quadrants[quadrant].color)
@@ -328,7 +327,7 @@ function radar_visualization(config) {
         .style("font-weight", 900)
         .style("font-size", "18px");    
         quarter = subcontainer.append("div");
-      quarter.style("flex","1 1 clc(100% - 50 px)")
+      quarter
         .attr("class","quarter")
 for (subcol = 0; subcol < 2; subcol++ ) {
   subcolumn = quarter.append("div").attr("id","quadrant: "+quadrant+", subcolumn: "+subcol)
