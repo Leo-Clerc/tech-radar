@@ -201,9 +201,10 @@ function radar_visualization(config) {
   .attr("class","column")
 
   var svgContainer=container.append("div").attr("id","svgContainer")
-    .attr("class","svg")
+    .attr("class","svgContainer")
   var svg = svgContainer.append("svg") 
     .attr("preserveAspectRatio","xMinYMin meet")
+    .attr("class","svg")
   var col2 = container.append("div")
   .attr("class","column")
   var radar = svg.append("g");
