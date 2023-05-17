@@ -9,7 +9,7 @@ li {
   margin: 25px 50px 0 0;
 }
 table {
-  width: 1400px;
+  width: 100vw;
   margin: 0 50px 0 50px;
 }
 td {
@@ -29,7 +29,8 @@ height: 100vh;
   display: flex;
   flex-direction: column;
   width: 20vw;
-  align-items: justify-evenly;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 .svg{
   width:60vw;
@@ -43,7 +44,7 @@ height: 100vh;
   overflow-y: auto;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  height: 100%;
+  height: 50%;
 }
 
 @media only screen and (max-width: 800px){
