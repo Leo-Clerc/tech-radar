@@ -30,6 +30,7 @@ justify-content: space-evenly;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
+  height: 100%;
 }
 .svgContainer{
   width:60vw;
@@ -55,35 +56,66 @@ justify-content: space-evenly;
   font-size: 11px;
   color: white;
 }
-@media (max-width: 1000px){
+@media only screen and (max-width: 1000px){
   .parent {
-    width: 80%;
+    width: 100%;
+    height: 60vh;
   }
   .svgContainer {
-    width: 60%
+    width: 60%;
+    height: 100%
   }
   .svg {
     position: absolute;
-    top: 25%;
+    top: 50%;
   }
-  .column {
-    height: 50%;
-    width: 20%
+  .quadrant_name{
+    font-size: 15px;
+  }
+  .ring_name {
+    font-size: 9px;
+  }
+  .techno_name {
+    font-size: 8px
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .parent {
+    width: 100%;
+    height: 40vh;
+  }
+  .svgContainer {
+    width: 60%;
+    height: 100%
+  }
+  .svg {
+    position: absolute;
+    top: 50%;
+  }
+  .quadrant_name{
+    font-size: 15px;
+  }
+  .ring_name {
+    font-size: 9px;
+  }
+  .techno_name {
+    font-size: 8px
   }
 }
 
 .quadrant {
-  height: 50%;
+  height: 100%;
   flex: 1;
   overflow: hidden;
 }
 .quarter {
   display: flex;
   flex-direction: row;
-  grid-row-gap: 0px;
   overflow: hidden;
   overflow-y: auto;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; 
+  grid-row-gap: 0px;
   justify-content: flex-start;
   height: 100%;
 }
