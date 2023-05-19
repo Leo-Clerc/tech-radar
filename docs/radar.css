@@ -108,8 +108,11 @@ justify-content: space-evenly;
   height: 100%;
   flex: 1;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .quarter {
+  position: relative;
   display: flex;
   flex-direction: row;
   overflow: hidden;
@@ -117,7 +120,7 @@ justify-content: space-evenly;
   flex-wrap: nowrap; 
   grid-row-gap: 0px;
   justify-content: flex-start;
-  height: 100%;
+  flex : 1 0 0;
 }
 
 
