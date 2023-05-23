@@ -61,8 +61,8 @@ function radar_visualization(config) {
     { x: -675, y: 420 };
 
   const legend_offset = [
-    { x: 450, y: 130 },
-    { x: -675, y: 130 },
+    { x: 450, y: 200 },
+    { x: -675, y: 200 },
     { x: -675, y: -350 },
     { x: 450, y: -350 }
   ];
