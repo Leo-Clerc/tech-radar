@@ -61,10 +61,10 @@ function radar_visualization(config) {
     { x: -675, y: 420 };
 
   const legend_offset = [
-    { x: 450, y: 90 },
-    { x: -675, y: 90 },
-    { x: -675, y: -310 },
-    { x: 450, y: -310 }
+    { x: 450, y: 130 },
+    { x: -675, y: 130 },
+    { x: -675, y: -350 },
+    { x: 450, y: -350 }
   ];
 
   function polar(cartesian) {
@@ -243,18 +243,18 @@ function radar_visualization(config) {
       .style("fill", "#a3dbe810")
       .style("stroke", config.colors.grid)
       .style("stroke-width", 0.15*(i+1));
-    if (false) {        
-      grid.append("text")
-        .text(config.rings[i].name)
-        .attr("y", -rings[i].radius + 62)
-        .attr("text-anchor", "middle")
-        .style("fill", "#fff")
-        .style("font-family", "Inter")
-        .style("font-size", "35px")
-        .style("font-weight", "bold")
-        .style("pointer-events", "none")
-        .style("user-select", "none");
-    }
+    //if (false) {        
+      //grid.append("text")
+        //.text(config.rings[i].name)
+        //.attr("y", -rings[i].radius + 62)
+        //.attr("text-anchor", "middle")
+        //.style("fill", "#fff")
+        //.style("font-family", "Inter")
+        //.style("font-size", "35px")
+        //.style("font-weight", "bold")
+        //.style("pointer-events", "none")
+        //.style("user-select", "none");
+    //}
   }
 
   function legend_transform(quadrant, ring, index=null) {
